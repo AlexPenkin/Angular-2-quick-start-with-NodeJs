@@ -1,0 +1,27 @@
+{
+  "name": "angular2nodejs",
+  "version": "0.0.1",
+  "description": "Fast start and initialization angular2 app on Node.js Backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexPenkin/Angular-2-quick-start-with-NodeJs.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "start"
+  ],
+  "author": "Alexander Penkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexPenkin/Angular-2-quick-start-with-NodeJs/issues"
+  },
+  "homepage": "https://github.com/AlexPenkin/Angular-2-quick-start-with-NodeJs#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
