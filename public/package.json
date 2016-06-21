@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/AlexPenkin/Angular-2-quick-start-with-NodeJs#readme",
   "dependencies": {
-    "express": "^4.14.0",
     "@angular/common":  "2.0.0-rc.2",
     "@angular/compiler":  "2.0.0-rc.2",
     "@angular/core":  "2.0.0-rc.2",
