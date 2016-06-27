@@ -10,3 +10,8 @@ app.listen('8888', function(){
 app.get('/', function (req, res) {
   res.sendFile('/index.html');
 });
+/*app.get('/getData', function (req, res) {
+  //res.send('worked!');
+  //setTimeout(() => res.send(' Yeah bitch!') , 1000);
+  res.status(500);
+});*/
