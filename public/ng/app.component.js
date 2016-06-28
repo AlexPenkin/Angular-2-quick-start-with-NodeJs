@@ -14,17 +14,33 @@ var data_service_1 = require('./data.service');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
+        this.arr = [];
     }
     ;
     AppComponent.prototype.getFuckinData = function () {
         var _this = this;
-        this.data.getData().subscribe(function (data) { return _this.resData = data; });
+        this.arr = [];
+        this.data.getData().subscribe(function (data) { return _this.arr = data; });
+    };
+    /*
+    {for (let it of data) {
+      this.arr.push(it);
+      console.log(data);
+    }}
+    */
+    AppComponent.prototype.addFuckinData = function () {
+        var _this = this;
+        if (!this.newData) {
+            return;
+        }
+        this.data.addData(this.newData).subscribe(function (data) { return _this.arr = data; });
+        this.newData = '';
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             providers: [data_service_1.DataService],
-            template: "\n  <h1>My First Angular 2 App {{resData}}</h1>\n  <input type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">XHR Query</button>\n  "
+            template: "\n  <h1>My First Angular 2 App {{arr}}</h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\">{{item}}</li><ul>\n  "
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService])
     ], AppComponent);

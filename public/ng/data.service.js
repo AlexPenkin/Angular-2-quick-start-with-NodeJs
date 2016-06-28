@@ -18,7 +18,7 @@ var DataService = (function () {
     }
     ;
     DataService.prototype.extractData = function (res) {
-        var body = res._body;
+        var body = res.json();
         return body || {};
     };
     DataService.prototype.handleError = function (error) {
@@ -33,6 +33,11 @@ var DataService = (function () {
         return this.http.get(this.dataUrl)
             .map(this.extractData)
             .catch(this.handleError);
+    };
+    DataService.prototype.addData = function (adding) {
+        var body = { name: adding };
+        return this.http.post(this.dataUrl, body)
+            .map(this.extractData);
     };
     DataService = __decorate([
         core_1.Injectable(), 
