@@ -38,12 +38,13 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.onSelect = function (item) {
         this.selected = item;
+        console.log(item);
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             providers: [data_service_1.DataService],
-            styles: ["\n    .selected1 {\n      color: red;\n      font-size: 2em;\n    }\n    "
+            styles: ["\n    .selected1 {\n      color: red;\n      font-size: 2em;\n      transition: 1s;\n      font-smoothing: antialiased;\n    }\n    "
             ],
             template: "\n  <h1 >My First Angular 2 App {{selected * 100}}</h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\" [class.selected1]=\"item === selected\" (click)=\"onSelect(item)\" >{{item}} <span>x</span> </li><ul>\n  "
         }), 

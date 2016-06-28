@@ -8,6 +8,8 @@ import {DataService} from './data.service'
     .selected1 {
       color: red;
       font-size: 2em;
+      transition: 1s;
+      font-smoothing: antialiased;
     }
     `
     ],
