@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private data: DataService) { };
   newData: number;
   resData: any;
-  arr: Response<number> = [];
+  arr: Array<number> = [];
 
   getFuckinData() {
     this.arr = [];
