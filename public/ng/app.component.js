@@ -36,11 +36,16 @@ var AppComponent = (function () {
         this.data.addData(this.newData).subscribe(function (data) { return _this.arr = data; });
         this.newData = '';
     };
+    AppComponent.prototype.onSelect = function (item) {
+        this.selected = item;
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             providers: [data_service_1.DataService],
-            template: "\n  <h1>My First Angular 2 App {{arr}}</h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\">{{item}}</li><ul>\n  "
+            styles: ["\n    .selected1 {\n      color: red;\n      font-size: 2em;\n    }\n    "
+            ],
+            template: "\n  <h1 >My First Angular 2 App {{selected * 100}}</h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\" [class.selected1]=\"item === selected\" (click)=\"onSelect(item)\" >{{item}} <span>x</span> </li><ul>\n  "
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService])
     ], AppComponent);

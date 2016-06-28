@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -30,4 +31,8 @@ app.post('/getData', function(req, res) {
     res.send(arr);
   } else console.log('error!');
     console.log(arr);
+});
+
+app.get('/deleteItem', function(req, res){
+
 });
