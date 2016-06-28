@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-Const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const index = path.join(__dirname, 'public/index.html')
 var arr = [1, 2, 3];
 var myJsonString = JSON.stringify(arr);
