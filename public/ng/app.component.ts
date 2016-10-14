@@ -1,24 +1,28 @@
 import { Component } from '@angular/core';
 import './rxjs'
 import {DataService} from './data.service'
+import {Wiki} from './wikiComponent'
 @Component({
   selector: 'my-app',
   providers: [DataService],
+  directives: [Wiki],
   styles: [`
     .selected1 {
       color: red;
-      font-size: 2em;
       transition: 1s;
       font-smoothing: antialiased;
     }
     `
-    ],
+  ],
   template: `
-  <h1 >My First Angular 2 App {{selected * 100}}</h1>
+  <h1 >My First Angular 2 App <span *ngIf = 'selected'>{{selected}}</span></h1>
   <input [(ngModel)]="newData" type="input" name="someThing" value="">
   <button (click)="getFuckinData()">Get Array</button>
   <button (click)="addFuckinData(); ">Add element in array</button>
-  <ul><li *ngFor = "let item of arr" [class.selected1]="item === selected" (click)="onSelect(item)" >{{item}} <span>x</span> </li><ul>
+  <ul><li *ngFor = "let item of arr" [class.selected1]="item === selected"> <span (click)="onSelect(item)">{{item}}</span> <span (click)="delData(item)" *ngIf = 'item === selected'>Remove</span> </li></ul>
+  <br>
+
+  <wiki></wiki>
   `
 })
 export class AppComponent {
@@ -33,22 +37,21 @@ export class AppComponent {
       data => this.arr = data
     );
   }
-  /*
-  {for (let it of data) {
-    this.arr.push(it);
-    console.log(data);
-  }}
-  */
-
   addFuckinData() {
-    if (!this.newData ) {return;}
+    if (!this.newData) { return; }
     this.data.addData(this.newData).subscribe(
-    data => this.arr = data);
+      data => this.arr = data);
     this.newData = '';
   }
 
   onSelect(item: number) {
     this.selected = item;
     console.log(item);
+  }
+  delData(item: number) {
+    this.data.deleteData(item)
+      .subscribe(data => this.arr = data);
+    this.selected = undefined;
+    console.log('removed!');
   }
 }

@@ -33,6 +33,12 @@ app.post('/getData', function(req, res) {
     console.log(arr);
 });
 
-app.get('/deleteItem', function(req, res){
-
+app.post('/deleteData', function(req, res){
+  let item = +req.body.name;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === item) {
+      arr.splice(i,1);
+    }
+  }
+  res.send(arr);
 });

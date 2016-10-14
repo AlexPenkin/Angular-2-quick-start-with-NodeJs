@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 require('./rxjs');
 var data_service_1 = require('./data.service');
+var wikiComponent_1 = require('./wikiComponent');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
@@ -22,12 +23,6 @@ var AppComponent = (function () {
         this.arr = [];
         this.data.getData().subscribe(function (data) { return _this.arr = data; });
     };
-    /*
-    {for (let it of data) {
-      this.arr.push(it);
-      console.log(data);
-    }}
-    */
     AppComponent.prototype.addFuckinData = function () {
         var _this = this;
         if (!this.newData) {
@@ -40,13 +35,21 @@ var AppComponent = (function () {
         this.selected = item;
         console.log(item);
     };
+    AppComponent.prototype.delData = function (item) {
+        var _this = this;
+        this.data.deleteData(item)
+            .subscribe(function (data) { return _this.arr = data; });
+        this.selected = undefined;
+        console.log('removed!');
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             providers: [data_service_1.DataService],
-            styles: ["\n    .selected1 {\n      color: red;\n      font-size: 2em;\n      transition: 1s;\n      font-smoothing: antialiased;\n    }\n    "
+            directives: [wikiComponent_1.Wiki],
+            styles: ["\n    .selected1 {\n      color: red;\n      transition: 1s;\n      font-smoothing: antialiased;\n    }\n    "
             ],
-            template: "\n  <h1 >My First Angular 2 App {{selected * 100}}</h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\" [class.selected1]=\"item === selected\" (click)=\"onSelect(item)\" >{{item}} <span>x</span> </li><ul>\n  "
+            template: "\n  <h1 >My First Angular 2 App <span *ngIf = 'selected'>{{selected}}</span></h1>\n  <input [(ngModel)]=\"newData\" type=\"input\" name=\"someThing\" value=\"\">\n  <button (click)=\"getFuckinData()\">Get Array</button>\n  <button (click)=\"addFuckinData(); \">Add element in array</button>\n  <ul><li *ngFor = \"let item of arr\" [class.selected1]=\"item === selected\"> <span (click)=\"onSelect(item)\">{{item}}</span> <span (click)=\"delData(item)\" *ngIf = 'item === selected'>Remove</span> </li></ul>\n  <br>\n\n  <wiki></wiki>\n  "
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService])
     ], AppComponent);
